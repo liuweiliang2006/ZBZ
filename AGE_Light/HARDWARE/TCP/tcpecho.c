@@ -39,6 +39,7 @@
 #include "lwip/sys.h"
 #include "lwip/api.h"
 #include "MyInclude.h"
+#include "boot_api.h"
 /*-----------------------------------------------------------------------------------*/
 
 #define RECV_DATA         (1200)
@@ -103,28 +104,34 @@ void  tcpecho_thread(void* arg)
            while(1) 
 				   {
             iDataLength = recv(SysCtrl.socket_descr, recv_data, RECV_DATA, 0);
-
-//						printf("recv %d len data\n", iDataLength);
-						if(iDataLength>20)
-						{
-							for(i=0;i<MAX_REC_COMSIZE;i++)
-							{
-							   SysCtrl.Rec_Comand[i]=recv_data[i];
-							}
 						
-							SysCtrl.Ethernet.ETH_ReceiveLength.byte.LBYTE = SysCtrl.Rec_Comand[(MAX_REC_COMSIZE-4)];
-							SysCtrl.Ethernet.ETH_ReceiveLength.byte.ZBYTE = SysCtrl.Rec_Comand[(MAX_REC_COMSIZE-3)];
-							SysCtrl.Ethernet.ETH_ReceiveLength.byte.MBYTE = SysCtrl.Rec_Comand[(MAX_REC_COMSIZE-2)];
-							SysCtrl.Ethernet.ETH_ReceiveLength.byte.HBYTE = SysCtrl.Rec_Comand[(MAX_REC_COMSIZE-1)];
-							if(iDataLength==SysCtrl.Ethernet.ETH_ReceiveLength.all)
-							{							 
-							   for(j=0;j<(iDataLength/2);j++)
-								 {
-									 SysCtrl.Ethernet.Data[j]=(recv_data[(2*j+1)]<<8)|(recv_data[2*j]);
-								 }						
-							   EthernetInterfaceHandler((iDataLength));
-							}						
-						}								
+						if(iDataLength >20)
+						{
+							WriteAppData(iDataLength,recv_data)
+						}
+						 //BOOT recv get the upgrade data
+						 
+//						printf("recv %d len data\n", iDataLength);
+//						if(iDataLength>20)
+//						{
+//							for(i=0;i<MAX_REC_COMSIZE;i++)
+//							{
+//							   SysCtrl.Rec_Comand[i]=recv_data[i];
+//							}
+//						
+//							SysCtrl.Ethernet.ETH_ReceiveLength.byte.LBYTE = SysCtrl.Rec_Comand[(MAX_REC_COMSIZE-4)];
+//							SysCtrl.Ethernet.ETH_ReceiveLength.byte.ZBYTE = SysCtrl.Rec_Comand[(MAX_REC_COMSIZE-3)];
+//							SysCtrl.Ethernet.ETH_ReceiveLength.byte.MBYTE = SysCtrl.Rec_Comand[(MAX_REC_COMSIZE-2)];
+//							SysCtrl.Ethernet.ETH_ReceiveLength.byte.HBYTE = SysCtrl.Rec_Comand[(MAX_REC_COMSIZE-1)];
+//							if(iDataLength==SysCtrl.Ethernet.ETH_ReceiveLength.all)
+//							{							 
+//							   for(j=0;j<(iDataLength/2);j++)
+//								 {
+//									 SysCtrl.Ethernet.Data[j]=(recv_data[(2*j+1)]<<8)|(recv_data[2*j]);
+//								 }						
+//							   EthernetInterfaceHandler((iDataLength));
+//							}						
+//						}								
             if (iDataLength <= 0)
             break;
 

@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER   __KEIL</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\..\..\Device\MM32F327x\Include;..\..\Device\MM32F327x\HAL_Lib\Inc;..\..\Device\CMSIS\KEIL_Core;..\USER;..\SYSTEM\UART;..\SYSTEM\SYS;..\SYSTEM\DELAY;..\HARDWARE\TCP;..\HARDWARE\BSP;..\..\LWIP\src;..\..\LWIP\src\arch;..\..\LWIP\src\include;..\..\LWIP\src\include\compat;..\..\LWIP\src\include\netif;..\..\LWIP\src\include\lwip;..\..\LWIP\src\include\lwip\apps;..\..\LWIP\src\include\lwip\priv;..\..\LWIP\src\include\lwip\prot;..\FreeRTOS\include;..\FreeRTOS\port\RVDS\ARM_CM3;..\..\..\..\..\Device\MM32F327x\Source\KEIL_StartAsm;..\HARDWARE\SIM_EEPROM;..\HARDWARE\RTC;..\HARDWARE\TIM;..\HARDWARE\FSMC_SRAM;..\Use_Headfile</IncludePath>
+              <IncludePath>..\..\..\..\..\Device\MM32F327x\Include;..\..\Device\MM32F327x\HAL_Lib\Inc;..\..\Device\CMSIS\KEIL_Core;..\USER;..\SYSTEM\UART;..\SYSTEM\SYS;..\SYSTEM\DELAY;..\HARDWARE\TCP;..\HARDWARE\BSP;..\..\LWIP\src;..\..\LWIP\src\arch;..\..\LWIP\src\include;..\..\LWIP\src\include\compat;..\..\LWIP\src\include\netif;..\..\LWIP\src\include\lwip;..\..\LWIP\src\include\lwip\apps;..\..\LWIP\src\include\lwip\priv;..\..\LWIP\src\include\lwip\prot;..\FreeRTOS\include;..\FreeRTOS\port\RVDS\ARM_CM3;..\..\..\..\..\Device\MM32F327x\Source\KEIL_StartAsm;..\HARDWARE\SIM_EEPROM;..\HARDWARE\RTC;..\HARDWARE\TIM;..\HARDWARE\FSMC_SRAM;..\Use_Headfile;..\Boot</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -991,6 +991,26 @@
               <FileName>hal_wwdg.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Device\MM32F327x\HAL_Lib\Src\hal_wwdg.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Boot</GroupName>
+          <Files>
+            <File>
+              <FileName>boot_api.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Boot\boot_api.c</FilePath>
+            </File>
+            <File>
+              <FileName>iap.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Boot\iap.c</FilePath>
+            </File>
+            <File>
+              <FileName>drv_sys.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Boot\drv_sys.c</FilePath>
             </File>
           </Files>
         </Group>

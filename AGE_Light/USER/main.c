@@ -48,6 +48,11 @@
 
 #include "tcpecho.h"
 
+#include "addrinfo.h"
+#include "boot_api.h"
+#include "drv_sys.h"
+#include "iap.h"
+
 static TaskHandle_t AppTaskCreate_Handle = NULL; // Create task handle
 static TaskHandle_t Program_Task_Handle = NULL; // Program_Task handle
 //static TaskHandle_t Test2_Task_Handle = NULL; // Test2_Task handle
@@ -213,11 +218,26 @@ static void Program_Task(void* parameter)
         vTaskDelay(100); //delay 2000 ticks
     }
 }*/
+
+uint32_t FlagAddr[3]={Restart_Flag,ACTIVE_Flag,UPDATAFLAG_Flag};
 int main(void)
 {
-		
-    SystemTick_Count = 0;
-
+	uint16_t ucFlagVal[3]={0};
+	SystemTick_Count = 0;
+	
+	delay_100us(1000);
+	
+    
+	//获取标志位
+	for(uint8_t i=0;i<3;i++)
+	{
+		ucFlagVal[i]=(*(uint32_t*)FlagAddr[i]);
+	}
+	
+	
+	if((ucFlagVal[0] & 0x01) == UPDATE )
+	{
+		//需要执行升级操作
     BaseType_t xReturn = pdPASS;// Define a creation information return value, the default is pdPASS
 
     xReturn = xTaskCreate((TaskFunction_t )AppTaskCreate,   // Task entry function
@@ -232,7 +252,24 @@ int main(void)
     else
         return -1;
 
-    while(1);    // Normally will not execute here
+    while(1);    // Normally will not execute here		
+	}
+	else
+	{
+		uint32_t desAddress = 0;
+		if((ucFlagVal[1] & 0xffff) || ((ucFlagVal[1] & 0xffff)) == 0x41)
+		{
+			//如果活动分区标志位为FF或者为字符‘A’，跳转至APP1
+			desAddress = APP1_FLASHAddr;
+		}
+		else if(((ucFlagVal[1] & 0xffff)) == 0x42)
+		{
+			desAddress = APP2_FLASHAddr;
+		}
+		
+		iap_load_app(desAddress);
+	}
+
 
 }
 

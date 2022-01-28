@@ -147,3 +147,7 @@
 .\obj\main.o: ..\Use_Headfile\MB88346B.h
 .\obj\main.o: ..\Use_Headfile\AGE_CtrlDrive.h
 .\obj\main.o: ..\Use_Headfile\AD8688.h
+.\obj\main.o: ..\Boot\addrinfo.h
+.\obj\main.o: ..\Boot\boot_api.h
+.\obj\main.o: ..\Boot\drv_sys.h
+.\obj\main.o: ..\Boot\iap.h
