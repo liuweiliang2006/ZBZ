@@ -1,0 +1,14 @@
+.\obj\altcp.o: ..\..\LWIP\src\core\altcp.c
+.\obj\altcp.o: ..\..\LWIP\src\include\lwip/opt.h
+.\obj\altcp.o: ..\USER\lwipopts.h
+.\obj\altcp.o: ..\..\LWIP\src\include\lwip/debug.h
+.\obj\altcp.o: ..\..\LWIP\src\include\lwip/arch.h
+.\obj\altcp.o: ..\..\LWIP\src\arch/cc.h
+.\obj\altcp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\obj\altcp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\obj\altcp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\obj\altcp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\obj\altcp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\obj\altcp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\obj\altcp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
+.\obj\altcp.o: ..\..\LWIP\src\include\lwip/opt.h

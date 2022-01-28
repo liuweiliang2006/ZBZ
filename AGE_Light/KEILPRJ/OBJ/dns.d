@@ -1,0 +1,14 @@
+.\obj\dns.o: ..\..\LWIP\src\core\dns.c
+.\obj\dns.o: ..\..\LWIP\src\include\lwip/opt.h
+.\obj\dns.o: ..\USER\lwipopts.h
+.\obj\dns.o: ..\..\LWIP\src\include\lwip/debug.h
+.\obj\dns.o: ..\..\LWIP\src\include\lwip/arch.h
+.\obj\dns.o: ..\..\LWIP\src\arch/cc.h
+.\obj\dns.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\obj\dns.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\obj\dns.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\obj\dns.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\obj\dns.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\obj\dns.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\obj\dns.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
+.\obj\dns.o: ..\..\LWIP\src\include\lwip/opt.h

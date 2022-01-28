@@ -1,0 +1,15 @@
+.\obj\netdb.o: ..\..\LWIP\src\api\netdb.c
+.\obj\netdb.o: ..\..\LWIP\src\include\lwip/netdb.h
+.\obj\netdb.o: ..\..\LWIP\src\include\lwip/opt.h
+.\obj\netdb.o: ..\USER\lwipopts.h
+.\obj\netdb.o: ..\..\LWIP\src\include\lwip/debug.h
+.\obj\netdb.o: ..\..\LWIP\src\include\lwip/arch.h
+.\obj\netdb.o: ..\..\LWIP\src\arch/cc.h
+.\obj\netdb.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\obj\netdb.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\obj\netdb.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\obj\netdb.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\obj\netdb.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\obj\netdb.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\obj\netdb.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
+.\obj\netdb.o: ..\..\LWIP\src\include\lwip/opt.h

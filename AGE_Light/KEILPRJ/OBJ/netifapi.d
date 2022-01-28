@@ -1,0 +1,14 @@
+.\obj\netifapi.o: ..\..\LWIP\src\api\netifapi.c
+.\obj\netifapi.o: ..\..\LWIP\src\include\lwip/opt.h
+.\obj\netifapi.o: ..\USER\lwipopts.h
+.\obj\netifapi.o: ..\..\LWIP\src\include\lwip/debug.h
+.\obj\netifapi.o: ..\..\LWIP\src\include\lwip/arch.h
+.\obj\netifapi.o: ..\..\LWIP\src\arch/cc.h
+.\obj\netifapi.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\obj\netifapi.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\obj\netifapi.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\obj\netifapi.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\obj\netifapi.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\obj\netifapi.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\obj\netifapi.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
+.\obj\netifapi.o: ..\..\LWIP\src\include\lwip/opt.h
