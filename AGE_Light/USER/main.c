@@ -219,7 +219,7 @@ static void Program_Task(void* parameter)
     }
 }*/
 
-uint32_t FlagAddr[3]={Restart_Flag,ACTIVE_Flag,UPDATAFLAG_Flag};
+uint32_t FlagAddr[3]={Restart_Flag,Updata_Flag,StartCopy_Flag};
 int main(void)
 {
 	uint16_t ucFlagVal[3]={0};
@@ -237,6 +237,13 @@ int main(void)
 	
 	if((ucFlagVal[0] & 0x01) == UPDATE )
 	{
+		//将备份区擦除,大小180K
+		FLASH_Unlock();
+		for(uint8_t i=0;i<180;i++)
+		{
+			FLASH_ErasePage(Cache_FLASHAddr+i*1024);
+		}
+		FLASH_Lock();
 		//需要执行升级操作
     BaseType_t xReturn = pdPASS;// Define a creation information return value, the default is pdPASS
 
@@ -256,18 +263,18 @@ int main(void)
 	}
 	else
 	{
-		uint32_t desAddress = 0;
-		if((ucFlagVal[1] & 0xffff) || ((ucFlagVal[1] & 0xffff)) == 0x41)
-		{
-			//如果活动分区标志位为FF或者为字符‘A’，跳转至APP1
-			desAddress = APP1_FLASHAddr;
-		}
-		else if(((ucFlagVal[1] & 0xffff)) == 0x42)
-		{
-			desAddress = APP2_FLASHAddr;
-		}
+//		uint32_t desAddress = 0;
+//		if((ucFlagVal[1] & 0xffff) || ((ucFlagVal[1] & 0xffff)) == 0x41)
+//		{
+//			//如果活动分区标志位为FF或者为字符‘A’，跳转至APP1
+//			desAddress = APP1_FLASHAddr;
+//		}
+//		else if(((ucFlagVal[1] & 0xffff)) == 0x42)
+//		{
+//			desAddress = APP2_FLASHAddr;
+//		}
 		
-		iap_load_app(desAddress);
+		iap_load_app(APP_FLASHAddr);
 	}
 
 

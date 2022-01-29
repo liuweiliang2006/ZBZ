@@ -53,8 +53,10 @@ void  tcpecho_thread(void* arg)
     char* recv_data;
     struct sockaddr_in server_addr, client_addr;
     socklen_t sin_size;
+		ErrorStatus result;
     int j,i;
-
+		uint8_t resData[PACK_FIX_LEN];
+		
 //    printf("The local port number is%d\n\n", LOCAL_PORT);
 
     recv_data = (char*)pvPortMalloc(RECV_DATA);
@@ -107,31 +109,21 @@ void  tcpecho_thread(void* arg)
 						
 						if(iDataLength >20)
 						{
-							WriteAppData(iDataLength,recv_data)
-						}
-						 //BOOT recv get the upgrade data
-						 
-//						printf("recv %d len data\n", iDataLength);
-//						if(iDataLength>20)
-//						{
-//							for(i=0;i<MAX_REC_COMSIZE;i++)
-//							{
-//							   SysCtrl.Rec_Comand[i]=recv_data[i];
-//							}
-//						
-//							SysCtrl.Ethernet.ETH_ReceiveLength.byte.LBYTE = SysCtrl.Rec_Comand[(MAX_REC_COMSIZE-4)];
-//							SysCtrl.Ethernet.ETH_ReceiveLength.byte.ZBYTE = SysCtrl.Rec_Comand[(MAX_REC_COMSIZE-3)];
-//							SysCtrl.Ethernet.ETH_ReceiveLength.byte.MBYTE = SysCtrl.Rec_Comand[(MAX_REC_COMSIZE-2)];
-//							SysCtrl.Ethernet.ETH_ReceiveLength.byte.HBYTE = SysCtrl.Rec_Comand[(MAX_REC_COMSIZE-1)];
-//							if(iDataLength==SysCtrl.Ethernet.ETH_ReceiveLength.all)
-//							{							 
-//							   for(j=0;j<(iDataLength/2);j++)
-//								 {
-//									 SysCtrl.Ethernet.Data[j]=(recv_data[(2*j+1)]<<8)|(recv_data[2*j]);
-//								 }						
-//							   EthernetInterfaceHandler((iDataLength));
-//							}						
-//						}								
+							result =WriteAppData(iDataLength,recv_data);
+							memset(resData,0,PACK_FIX_LEN);
+							memcpy(resData,&response,36);
+							uint32_t calCheckSum = 0;
+							for(uint8_t i = 0;i < 36; i++)
+							{
+								calCheckSum += resData[i];
+							}
+							resData[36] = calCheckSum & 0xff;
+							resData[37] = calCheckSum & 0xff00 >> 8;
+							resData[38] = calCheckSum & 0xff0000 >> 16;
+							resData[39] = calCheckSum & 0xff000000 >> 24;
+							
+							
+						}						
             if (iDataLength <= 0)
             break;
 

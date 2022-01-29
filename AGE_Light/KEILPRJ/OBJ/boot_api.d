@@ -69,3 +69,4 @@
 .\obj\boot_api.o: ..\..\Device\MM32F327x\HAL_Lib\Inc\HAL_eth_conf.h
 .\obj\boot_api.o: ..\..\Device\MM32F327x\HAL_Lib\Inc\hal_fsmc.h
 .\obj\boot_api.o: C:\Users\Administrator\AppData\Local\Arm\Packs\MindMotion\MM32F3270_DFP\1.0.5\Device\MM32F327x\Include\reg_fsmc.h
+.\obj\boot_api.o: ..\Boot\addrinfo.h

@@ -139,3 +139,4 @@
 .\obj\tcpecho.o: ..\Use_Headfile\MB88346B.h
 .\obj\tcpecho.o: ..\Use_Headfile\AGE_CtrlDrive.h
 .\obj\tcpecho.o: ..\Use_Headfile\AD8688.h
+.\obj\tcpecho.o: ..\Boot\boot_api.h
