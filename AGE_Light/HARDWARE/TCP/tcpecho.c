@@ -40,6 +40,8 @@
 #include "lwip/api.h"
 #include "MyInclude.h"
 #include "boot_api.h"
+#include "addrinfo.h"
+#include "iap.h"
 /*-----------------------------------------------------------------------------------*/
 
 #define RECV_DATA         (1200)
@@ -106,7 +108,8 @@ void  tcpecho_thread(void* arg)
            while(1) 
 				   {
             iDataLength = recv(SysCtrl.socket_descr, recv_data, RECV_DATA, 0);
-						
+						if (iDataLength <= 0)
+							break;
 						if(iDataLength >20)
 						{
 							result =WriteAppData(iDataLength,recv_data);
@@ -122,10 +125,44 @@ void  tcpecho_thread(void* arg)
 							resData[38] = calCheckSum & 0xff0000 >> 16;
 							resData[39] = calCheckSum & 0xff000000 >> 24;
 							
+							write(SysCtrl.socket_descr, resData, PACK_FIX_LEN);
 							
-						}						
-            if (iDataLength <= 0)
-            break;
+							if(result == SUCCESS)
+							{
+								continue;
+							}
+							else
+							{
+								break;
+							}
+						}
+						
+						if(recAllDataFlag)
+						{//正确接收到所有数据
+							//将APP区擦除,大小180K
+							char ucBackUPApp[1024]={0};
+							FLASH_Unlock();
+							for(uint8_t i=0;i<180;i++)
+							{
+								FLASH_ErasePage(APP_FLASHAddr+i*1024);
+							}
+							FLASH_Lock();
+							for(uint8_t i =0; i < 180; i++)
+							{
+								for(uint16_t j=0; j<1024; j++)
+								{
+									ucBackUPApp[j] = *(uint8_t*) (Cache_FLASHAddr+i*1024+j);
+								}
+								iap_write_APP_appbin(ucBackUPApp,1024,i);
+								memset(ucBackUPApp,0,1024);
+							}
+							//整个APP更新成功，更新标志位，跳转至APP
+							FLASH_Unlock();
+							FLASH_ErasePage(Symbol_FLASHAddr);
+							FLASH_ProgramHalfWord(FlagAddr[0],0x00); //升级标志位置1
+							FLASH_ProgramHalfWord(FlagAddr[1],0x01); //升级成功标志位清零。1：成功，0：失败
+							iap_load_app(APP_FLASHAddr); //建议启动了操作系统，最好软件重启跳至APP
+						}
 
         }
         if (SysCtrl.socket_descr >= 0)
@@ -136,6 +173,12 @@ void  tcpecho_thread(void* arg)
 __exit:
     if (sock >= 0) closesocket(sock);
     if (recv_data) free(recv_data);
+		//失败，更新标志位，跳转APP，到此步新的APP没有刷写完成，执行老的APP
+		FLASH_Unlock();
+		FLASH_ErasePage(Symbol_FLASHAddr);
+		FLASH_ProgramHalfWord(FlagAddr[0],0x00); //升级标志位置1
+		FLASH_ProgramHalfWord(FlagAddr[1],0x00); //升级成功标志位清零。1：成功，0：失败
+		iap_load_app(APP_FLASHAddr);//建议启动了操作系统，最好软件重启跳至APP
 }
 							
 /*-----------------------------------------------------------------------------------*/

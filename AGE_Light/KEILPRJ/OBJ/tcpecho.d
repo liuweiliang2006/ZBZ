@@ -140,3 +140,5 @@
 .\obj\tcpecho.o: ..\Use_Headfile\AGE_CtrlDrive.h
 .\obj\tcpecho.o: ..\Use_Headfile\AD8688.h
 .\obj\tcpecho.o: ..\Boot\boot_api.h
+.\obj\tcpecho.o: ..\Boot\addrinfo.h
+.\obj\tcpecho.o: ..\Boot\iap.h

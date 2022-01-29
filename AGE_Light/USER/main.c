@@ -220,6 +220,9 @@ static void Program_Task(void* parameter)
 }*/
 
 uint32_t FlagAddr[3]={Restart_Flag,Updata_Flag,StartCopy_Flag};
+//标志位区域编译时就给0，此步在MCU上验证下
+const u8 temp_flag  __attribute__ ((at(0x08024000))) = 0; 
+const u8 temp_flag1  __attribute__ ((at(0x08024004))) = 0;
 int main(void)
 {
 	uint16_t ucFlagVal[3]={0};
@@ -239,6 +242,10 @@ int main(void)
 	{
 		//将备份区擦除,大小180K
 		FLASH_Unlock();
+		
+		FLASH_ErasePage(Symbol_FLASHAddr);
+		FLASH_ProgramHalfWord(FlagAddr[0],0x00); //升级标志位置1
+		FLASH_ProgramHalfWord(FlagAddr[1],0x00); //升级成功标志位清零。1：成功，0：失败
 		for(uint8_t i=0;i<180;i++)
 		{
 			FLASH_ErasePage(Cache_FLASHAddr+i*1024);
@@ -262,18 +269,7 @@ int main(void)
     while(1);    // Normally will not execute here		
 	}
 	else
-	{
-//		uint32_t desAddress = 0;
-//		if((ucFlagVal[1] & 0xffff) || ((ucFlagVal[1] & 0xffff)) == 0x41)
-//		{
-//			//如果活动分区标志位为FF或者为字符‘A’，跳转至APP1
-//			desAddress = APP1_FLASHAddr;
-//		}
-//		else if(((ucFlagVal[1] & 0xffff)) == 0x42)
-//		{
-//			desAddress = APP2_FLASHAddr;
-//		}
-		
+	{		
 		iap_load_app(APP_FLASHAddr);
 	}
 
