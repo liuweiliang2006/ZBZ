@@ -221,8 +221,8 @@ static void Program_Task(void* parameter)
 
 uint32_t FlagAddr[3]={Restart_Flag,Updata_Flag,StartCopy_Flag};
 //标志位区域编译时就给0，此步在MCU上验证下
-const u8 temp_flag  __attribute__ ((at(0x08024000))) = 0; 
-const u8 temp_flag1  __attribute__ ((at(0x08024004))) = 0;
+const u8 temp_flag  __attribute__ ((at(0x0807FC00))) = 0; 
+const u8 temp_flag1  __attribute__ ((at(0x08024002))) = 0;
 int main(void)
 {
 	uint16_t ucFlagVal[3]={0};

@@ -161,7 +161,8 @@ void  tcpecho_thread(void* arg)
 							FLASH_ErasePage(Symbol_FLASHAddr);
 							FLASH_ProgramHalfWord(FlagAddr[0],0x00); //升级标志位置1
 							FLASH_ProgramHalfWord(FlagAddr[1],0x01); //升级成功标志位清零。1：成功，0：失败
-							iap_load_app(APP_FLASHAddr); //建议启动了操作系统，最好软件重启跳至APP
+							recAllDataFlag = 0;
+							iap_load_app(APP_FLASHAddr); //建议启动了操作系统，最好软件重启后跳转至APP
 						}
 
         }
