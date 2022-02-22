@@ -22,9 +22,8 @@
 #define Symbol_FLASHAddr					((u32)0x0807FC00)	//标志位存放区起始地址
 #define Symbol_FLASH_End					((u32)0x0807FFFF)	//标志位存放区结束地址
 #define Restart_Flag							((u32)0x0807FC00)	//重启标志位，该标志位bootloader与APP共用
-#define Updata_Flag								((u32)0x08024002)	//升级是否成功标志位，该标志位bootloader与APP共用
-//#define StartCopy_Flag						((u32)0x08024004)	//允许拷贝标志
-
+#define Updata_Flag								((u32)0x0807FC04)	//升级是否成功标志位，该标志位bootloader与APP共用
+#define StartCopy_Flag						((u32)0x0807FC08)	//允许拷贝标志
 	
 /*预留区366K*/	
 //#define Resever_FLASHAddr					((u32)0x08024800)	//预留起始地址
