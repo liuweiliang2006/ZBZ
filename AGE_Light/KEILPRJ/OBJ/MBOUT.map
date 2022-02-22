@@ -4839,8 +4839,8 @@ Image Symbol Table
     .conststring                             0x08013524   Section      109  tcp.o(.conststring)
     .conststring                             0x08013594   Section       85  tcp_out.o(.conststring)
     .conststring                             0x080135ec   Section       65  etharp.o(.conststring)
-    .ARM.__AT_0x08024004                     0x08024004   Section        1  main.o(.ARM.__AT_0x08024004)
     .ARM.__AT_0x0807FC00                     0x0807fc00   Section        1  main.o(.ARM.__AT_0x0807FC00)
+    .ARM.__AT_0x0807FC04                     0x0807fc04   Section        1  main.o(.ARM.__AT_0x0807FC04)
     .data                                    0x20000000   Section       20  system_mm32f327x.o(.data)
     .data                                    0x20000014   Section        4  eth_bsp_config.o(.data)
     .data                                    0x20000018   Section        4  tcpecho.o(.data)
@@ -5534,8 +5534,8 @@ Image Symbol Table
     __ctype_table                            0x080133c0   Data         129  ctype_o.o(.constdata)
     Region$$Table$$Base                      0x08013630   Number         0  anon$$obj.o(Region$$Table)
     Region$$Table$$Limit                     0x08013650   Number         0  anon$$obj.o(Region$$Table)
-    temp_flag1                               0x08024004   Data           1  main.o(.ARM.__AT_0x08024004)
     temp_flag                                0x0807fc00   Data           1  main.o(.ARM.__AT_0x0807FC00)
+    temp_flag1                               0x0807fc04   Data           1  main.o(.ARM.__AT_0x0807FC04)
     SystemCoreClock                          0x20000000   Data           4  system_mm32f327x.o(.data)
     AHBPrescTable                            0x20000004   Data          16  system_mm32f327x.o(.data)
     EthStatus                                0x20000014   Data           4  eth_bsp_config.o(.data)
@@ -6268,23 +6268,23 @@ Memory Map of the image
 
 
 
-  Load Region LR$$.ARM.__AT_0x08024004 (Base: 0x08024004, Size: 0x00000004, Max: 0x00000004, ABSOLUTE)
-
-    Execution Region ER$$.ARM.__AT_0x08024004 (Exec base: 0x08024004, Load base: 0x08024004, Size: 0x00000004, Max: 0x00000004, ABSOLUTE, UNINIT)
-
-    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
-
-    0x08024004   0x08024004   0x00000001   Data   RO         1125    .ARM.__AT_0x08024004  main.o
-
-
-
   Load Region LR$$.ARM.__AT_0x0807FC00 (Base: 0x0807fc00, Size: 0x00000004, Max: 0x00000004, ABSOLUTE)
 
     Execution Region ER$$.ARM.__AT_0x0807FC00 (Exec base: 0x0807fc00, Load base: 0x0807fc00, Size: 0x00000004, Max: 0x00000004, ABSOLUTE, UNINIT)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x0807fc00   0x0807fc00   0x00000001   Data   RO         1126    .ARM.__AT_0x0807FC00  main.o
+    0x0807fc00   0x0807fc00   0x00000001   Data   RO         1125    .ARM.__AT_0x0807FC00  main.o
+
+
+
+  Load Region LR$$.ARM.__AT_0x0807FC04 (Base: 0x0807fc04, Size: 0x00000004, Max: 0x00000004, ABSOLUTE)
+
+    Execution Region ER$$.ARM.__AT_0x0807FC04 (Exec base: 0x0807fc04, Load base: 0x0807fc04, Size: 0x00000004, Max: 0x00000004, ABSOLUTE, UNINIT)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x0807fc04   0x0807fc04   0x00000001   Data   RO         1126    .ARM.__AT_0x0807FC04  main.o
 
 
 ==============================================================================
